@@ -1,0 +1,38 @@
+{
+  "name": "predusk",
+  "version": "1.0.0",
+  "description": "Portfolio website with Groq-powered chat interface",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "keywords": [
+    "portfolio",
+    "chatbot",
+    "groq",
+    "next.js"
+  ],
+  "author": "Garvit Juneja",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.6.0",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.27.0",
+    "autoprefixer": "^10.4.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "eslint": "^8.40.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.3.0"
+  }
+}
