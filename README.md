@@ -1,107 +1,94 @@
-# Garvit Juneja - Personal Portfolio
+# Garvit Juneja's Portfolio
 
-A modern, responsive portfolio website built with Next.js, React, and Tailwind CSS. Features an AI-powered chatbot using Groq's API.
+A modern portfolio website showcasing my skills, projects, education, and experiences. Features a Groq-powered AI chatbot for interactive engagement.
 
-## 🌟 Features
+## 🌟 Overview
 
-- **Modern UI Design** with Tailwind CSS
-- **Responsive Layout** for all device sizes
-- **AI-Powered Chat Assistant** using Groq's LLM API
-- **Dynamic Project Showcase** with project cards
-- **Animated UI Components** for enhanced user experience
-- **Resume Download** functionality
-- **Detailed Sections** for experience, education, projects, and skills
+This portfolio presents my journey as a B.Tech Engineering Physics student at IIT Roorkee, highlighting my expertise in AI, machine learning, and DevOps technologies. The website includes interactive sections for my background, professional experiences, academic achievements, and technical projects.
 
-## 🚀 Live Demo
+## ✨ Features
 
-Visit the portfolio website: [Your deployed URL here]
+- **Professional Sections**: About, Experience, Projects, Skills, Education, Contact
+- **Interactive AI Chatbot**: Powered by Groq API using the LLaMA 3 model
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Dynamic Project Cards**: Showcasing my work with images and descriptions
+- **Modern UI**: Clean layout with subtle animations and transitions
+- **Dark/Light Mode**: Toggle between color schemes (coming soon)
+- **Resume Download**: Direct access to my CV
+- **Seamless Deployment**: Configured for Netlify
 
-## 💻 Tech Stack
+## 🚀 Projects Showcased
 
-- **Next.js** - React framework for building the UI
-- **React** - Frontend library
-- **Tailwind CSS** - Utility-first CSS framework
-- **Groq API** - AI-powered chat assistant
-- **Axios** - HTTP client for API requests
-- **Font Awesome** - Icons library
+1. **AI Cold Calling Agent**: Automated voice assistant for candidate screening and interactions
+2. **Stock Sentiment Analysis**: ML-based market trend prediction using news and social media
+3. **Neural Style Transfer**: Deep learning for artistic image styling
+4. **Low Light Image Enhancement**: Image quality improvement with deep learning
+5. **Technical Analysis of Stocks**: Financial data analysis with algorithmic trading signals
+6. **Multiple PDF Chatbot**: NLP-powered document question-answering system
 
-## 📋 Project Structure
+## 🛠️ Tech Stack
 
-```
-portfolio/
-├── public/             # Static files
-│   ├── project-images/ # Project images
-│   └── resume.pdf      # Downloadable resume
-├── src/
-│   ├── components/     # React components
-│   ├── pages/          # Next.js pages
-│   ├── styles/         # Global styles
-│   └── utils/          # Utility functions
-├── .env.example        # Example environment variables
-└── README.md           # Project documentation
-```
+- **Front-end Framework**: Next.js, React
+- **Styling**: Tailwind CSS, Styled Components
+- **AI Integration**: Groq API with LLaMA 3 model
+- **Icons**: Font Awesome
+- **Deployment**: Netlify
 
-## 🔧 Getting Started
+## 🧰 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14.0.0 or later)
+- Node.js (v16 or higher)
 - npm or yarn
+- Groq API key for chatbot functionality
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-portfolio.git
-   cd your-portfolio
-   ```
+1. Clone the repository
+```bash
+git clone https://github.com/garvit5555/portfolio.git
+cd portfolio
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+2. Install dependencies
+```bash
+npm install
+```
 
-3. Create environment variables:
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-4. Add your Groq API key to `.env.local`
+3. Set up environment variables
+Create a `.env.local` file in the root directory and add your Groq API key:
+```
+NEXT_PUBLIC_GROQ_API_KEY=your_groq_api_key
+```
 
-5. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+4. Run the development server
+```bash
+npm run dev
+```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🌐 Deployment
 
-This project is configured for easy deployment to Netlify:
 
-1. Push your code to GitHub
-2. Connect your repository to Netlify
-3. Configure the build settings:
-   - Build command: `npm run build`
-   - Publish directory: `.next`
-4. Add your environment variables in the Netlify dashboard
-5. Deploy!
+## 📁 Project Structure
 
-## 🙏 Acknowledgements
+- `/components` - Reusable React components
+- `/pages` - Next.js pages and API routes
+- `/public` - Static assets (images, resume PDF)
+- `/styles` - Tailwind configuration and global styles
+- `/utils` - Utility functions and Groq API integration
+- `/src` - Source directory containing the application code
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Groq API](https://groq.com/)
-- [Font Awesome](https://fontawesome.com/)
+## 🤖 AI Chatbot
 
-## 📄 License
+The integrated chatbot uses Groq's API with the LLaMA 3 model to answer questions about my education, skills, projects, and experience. The system is designed to provide helpful, accurate information about my background and expertise.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 👤 About Me
 
----
+I'm Garvit Juneja, a dedicated B.Tech student in Engineering Physics at IIT Roorkee with expertise in AI, machine learning, and emerging DevOps technologies. My passion lies in solving real-world problems through technology and innovation.
 
-Built with ❤️ by Garvit Juneja 
+## 📬 Contact
+
+Feel free to reach out to me:
+- Email: garvit@ph.iitr.ac.in
+- GitHub: [github.com/garvit5555](https://github.com/garvit5555)
+- LinkedIn: [linkedin.com/in/garvit-juneja-396840290](https://linkedin.com/in/garvit-juneja-396840290) 
