@@ -12,9 +12,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    # Set this to true to enable Next.js src directory support
-    src_dir = "src"
 
 [[redirects]]
   from = "/*"
