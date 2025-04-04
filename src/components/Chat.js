@@ -1,13 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { SYSTEM_PROMPT } from '../utils/groq';
+import ReactMarkdown from 'react-markdown';
 
 const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [chatSize, setChatSize] = useState({ width: 384, height: 384 }); // Default sizes (w-96 = 384px, h-96 = 384px)
+  const [isResizing, setIsResizing] = useState(false);
   const messagesEndRef = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -22,6 +26,43 @@ const Chat = () => {
     // Scroll to bottom whenever messages change
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Setup resize event listeners
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizing) return;
+      
+      const minWidth = 320; // 80 in tailwind (w-80)
+      const maxWidth = window.innerWidth * 0.8;
+      const minHeight = 300;
+      const maxHeight = window.innerHeight * 0.8;
+      
+      // Calculate new dimensions based on mouse position
+      const newWidth = Math.min(maxWidth, Math.max(minWidth, window.innerWidth - e.clientX));
+      const newHeight = Math.min(maxHeight, Math.max(minHeight, window.innerHeight - e.clientY));
+      
+      setChatSize({ width: newWidth, height: newHeight });
+    };
+    
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+    
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing]);
+
+  const handleResizeStart = (e) => {
+    e.preventDefault();
+    setIsResizing(true);
+  };
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -69,7 +110,41 @@ const Chat = () => {
 
       {/* Chat window */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-80 sm:w-96 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden border border-gray-200">
+        <div 
+          ref={chatRef}
+          className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden border border-gray-200"
+          style={{ 
+            width: `${chatSize.width}px`, 
+            height: `${chatSize.height}px`,
+            transition: isResizing ? 'none' : 'box-shadow 0.2s ease-in-out'
+          }}
+        >
+          {/* Resize handle - bottom left corner */}
+          <div 
+            className="absolute bottom-0 left-0 w-6 h-6 cursor-nesw-resize z-10"
+            onMouseDown={handleResizeStart}
+            title="Resize chat window"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4 text-gray-400 m-1" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="17 7 7 17" />
+              <polyline points="17 12 12 17" />
+              <polyline points="17 17 17 17" />
+            </svg>
+          </div>
+          
+          {/* Resize handle - top left corner */}
+          <div 
+            className="absolute top-0 left-0 w-6 h-6 cursor-nwse-resize z-10"
+            onMouseDown={handleResizeStart}
+            title="Resize chat window"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4 text-gray-400 m-1 transform rotate-180" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="17 7 7 17" />
+              <polyline points="17 12 12 17" />
+              <polyline points="17 17 17 17" />
+            </svg>
+          </div>
+
           {/* Chat header */}
           <div className="bg-primary text-white p-4">
             <h3 className="font-medium">Chat with Garvit's Assistant</h3>
@@ -89,7 +164,25 @@ const Chat = () => {
                       : 'bg-gray-200 text-gray-800 rounded-bl-none'
                   }`}
                 >
-                  {message.content}
+                  {message.role === 'assistant' ? (
+                    <ReactMarkdown 
+                      components={{
+                        p: ({node, ...props}) => <p className="text-gray-800" {...props} />,
+                        h1: ({node, ...props}) => <h1 className="text-gray-900 font-bold text-xl" {...props} />,
+                        h2: ({node, ...props}) => <h2 className="text-gray-900 font-bold text-lg" {...props} />,
+                        h3: ({node, ...props}) => <h3 className="text-gray-900 font-bold text-md" {...props} />,
+                        a: ({node, ...props}) => <a className="text-primary font-medium hover:underline" {...props} />,
+                        strong: ({node, ...props}) => <strong className="text-gray-900 font-semibold" {...props} />,
+                        code: ({node, ...props}) => <code className="text-gray-800 bg-gray-100 px-1 py-0.5 rounded" {...props} />,
+                        li: ({node, ...props}) => <li className="text-gray-800 ml-4" {...props} />,
+                        ul: ({node, ...props}) => <ul className="list-disc mb-3" {...props} />
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  ) : (
+                    message.content
+                  )}
                 </div>
               </div>
             ))}
@@ -115,7 +208,7 @@ const Chat = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask something about Garvit..."
-                className="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-gray-800 bg-white"
                 disabled={isLoading}
               />
               <button

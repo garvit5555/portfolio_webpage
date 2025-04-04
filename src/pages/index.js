@@ -258,7 +258,7 @@ export default function Home() {
                     <li className="flex items-start">
                       <span className="bg-primary/10 p-1 rounded mr-2 mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                       </span>
                       <div>
@@ -301,7 +301,7 @@ export default function Home() {
                   <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
                     <h3 className="text-xl font-bold text-gray-900">AI Developer Intern</h3>
                     <div className="text-sm font-medium text-gray-500 mt-2 md:mt-0">
-                      <span className="bg-primary/10 text-primary px-3 py-1 rounded-full">January 2025 - Present</span>
+                      <span className="bg-primary/10 text-primary px-3 py-1 rounded-full">January 2025 - February 2025</span>
                     </div>
                   </div>
                   <h4 className="text-lg font-medium text-primary mb-3">Nimrobo AI Pvt. Ltd.</h4>
@@ -587,6 +587,19 @@ export default function Home() {
                           className="text-primary hover:underline"
                         >
                           github.com/garvit5555
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 bg-primary/10 p-3 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                      </div>
+                      <div className="ml-4">
+                        <h4 className="font-medium text-gray-700">Phone</h4>
+                        <a href="tel:8708644470" className="text-primary hover:underline">
+                          +91 8708644470
                         </a>
                       </div>
                     </div>

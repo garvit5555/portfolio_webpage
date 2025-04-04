@@ -51,7 +51,7 @@ EDUCATION:
 - Class X: Ved Model Sr. Sec. School Kalanaur Rohtak Haryana, 93.40%
 
 PROFESSIONAL EXPERIENCE:
-1. AI Developer Intern at Nimrobo AI (January 2025-Present)
+1. AI Developer Intern at Nimrobo AI (January 2025-February 2025)
    - Enhanced a chatbot Chrome extension using React, JavaScript, and web scraping
    - Leveraged OpenAI's API for context-aware responses
    - Developed tools for automating information structuring using AI agents
