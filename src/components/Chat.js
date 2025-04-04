@@ -8,10 +8,27 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [chatSize, setChatSize] = useState({ width: 384, height: 384 }); // Default sizes (w-96 = 384px, h-96 = 384px)
+  const [chatSize, setChatSize] = useState({ width: 320, height: 380 }); // Default smaller size for mobile
   const [isResizing, setIsResizing] = useState(false);
   const messagesEndRef = useRef(null);
   const chatRef = useRef(null);
+
+  // Initialize chat size based on viewport when it's first opened
+  useEffect(() => {
+    if (isOpen) {
+      const isMobile = window.innerWidth < 768;
+      
+      if (isMobile) {
+        // On mobile, make chat take up most of the screen width but leave some space
+        const mobileWidth = Math.min(window.innerWidth * 0.92, 350);
+        const mobileHeight = Math.min(window.innerHeight * 0.6, 450);
+        setChatSize({ width: mobileWidth, height: mobileHeight });
+      } else {
+        // On desktop, use a standard size
+        setChatSize({ width: 384, height: 380 });
+      }
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -32,9 +49,9 @@ const Chat = () => {
     const handleMouseMove = (e) => {
       if (!isResizing) return;
       
-      const minWidth = 320; // 80 in tailwind (w-80)
-      const maxWidth = window.innerWidth * 0.8;
-      const minHeight = 300;
+      const minWidth = Math.min(320, window.innerWidth * 0.6); // Responsive min width
+      const maxWidth = Math.min(window.innerWidth * 0.95, 500); // Limit max width
+      const minHeight = 250;
       const maxHeight = window.innerHeight * 0.8;
       
       // Calculate new dimensions based on mouse position
@@ -112,7 +129,7 @@ const Chat = () => {
       {isOpen && (
         <div 
           ref={chatRef}
-          className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden border border-gray-200"
+          className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden border border-gray-200 max-w-[95vw]"
           style={{ 
             width: `${chatSize.width}px`, 
             height: `${chatSize.height}px`,
@@ -162,7 +179,7 @@ const Chat = () => {
                     message.role === 'user' 
                       ? 'bg-primary text-white rounded-br-none' 
                       : 'bg-gray-200 text-gray-800 rounded-bl-none'
-                  }`}
+                  } max-w-[90%]`}
                 >
                   {message.role === 'assistant' ? (
                     <ReactMarkdown 
